@@ -20,3 +20,15 @@ def compile_and_train_model(model, train_images, train_labels):
                   metrics=['accuracy'])
     model.fit(train_images, train_labels, epochs=5)
     return model
+
+def evaluate_model(model, test_images, test_labels):
+    test_loss, test_acc = model.evaluate(test_images, test_labels)
+    print(f'Test accuracy: {test_acc}')
+
+if __name__ == "__main__":
+    (train_images, train_labels), (test_images, test_labels) = load_data()
+    model = create_model()
+    model = compile_and_train_model(model, train_images, train_labels)
+    evaluate_model(model, test_images, test_labels)
+    model.save('mnist_cnn_model.h5')  # Save the model
+
