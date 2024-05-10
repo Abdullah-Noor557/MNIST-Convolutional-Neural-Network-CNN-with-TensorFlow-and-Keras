@@ -14,3 +14,9 @@ def create_model():
     model.add(layers.Dense(64, activation='relu'))
     model.add(layers.Dense(10, activation='softmax'))
     return model
+def compile_and_train_model(model, train_images, train_labels):
+    model.compile(optimizer='adam', 
+                  loss='sparse_categorical_crossentropy', 
+                  metrics=['accuracy'])
+    model.fit(train_images, train_labels, epochs=5)
+    return model
